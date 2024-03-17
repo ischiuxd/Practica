@@ -1,5 +1,7 @@
 import express from "express";
 import { estudiantes } from "./studiantes.js";
+import { mostrarTabla } from './sql.js';
+mostrarTabla();
 const app = express();
 app.listen(5000,
     ()=> {
