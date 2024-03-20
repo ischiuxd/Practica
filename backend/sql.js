@@ -7,37 +7,35 @@ const conxx = mysql.createConnection({
   password: "1234"
 });
 
+export { conxx };
+
 export function mostrarTabla() {
   const sqlQuery = "SELECT * FROM usuarios_tb";
-
   conxx.query(sqlQuery, (error, results) => {
     if (error) {
       console.error("Error al ejecutar la consulta:", error);
       return;
     }
-
-    console.log("Tabla de la base de datos:");
-    console.table(results);
+    console.log("Resultado de la consulta:");
+    console.log(results);
   });
-
-  closeConnection();
 }
 
-export function addUser(nombre_us, contra_us, admin_us) {
-  const sqlQuery = "INSERT INTO usuarios_tb (nombre_us, contra_us, admin_us) VALUES (?, ?, ?)";
-
-  conxx.query(sqlQuery, [nombre_us, contra_us, admin_us], (error, results) => {
+export function agregarUsuario(usuario) {
+  const { id_us, registro_us, nombre_us, apellido_us, contra_us, admin_us, correo_us } = usuario;
+  const sqlQuery = `INSERT INTO usuarios_tb (id_us, registro_us, nombre_us, apellido_us, contra_us, admin_us, correo_us) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  const values = [id_us, registro_us, nombre_us, apellido_us, contra_us, admin_us, correo_us];
+  
+  conxx.query(sqlQuery, values, (error, results) => {
     if (error) {
-      console.error("Error al insertar el usuario:", error);
+      console.error("Error al agregar usuario:", error);
       return;
     }
-
-    console.log(`Usuario '${nombre_us}' agregado exitosamente.`);
+    console.log("Usuario agregado correctamente.");
   });
-
-  closeConnection();
 }
 
 export function closeConnection() {
   conxx.end();
+  console.error("Conexion terminada");
 }
