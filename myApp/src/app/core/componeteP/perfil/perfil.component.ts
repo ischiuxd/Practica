@@ -1,9 +1,10 @@
 
-        import { Component, OnInit } from '@angular/core';
+        import { Component, AfterViewInit } from '@angular/core';
         import { CacheService } from '../../servicioC/cache.service';
         import { UsuariosService } from '../../servicios/usuarios.service';
         import { Usuariosinterfaz } from '../../../Interfaces/Usuarios.interface';
         import { BuscarCLService } from '../../servicioCL/buscar-cl.service';
+import { BuscarCrsService } from '../../servicioCRS/buscar-crs.service';
         
         @Component({
           selector: 'app-perfil',
@@ -30,13 +31,22 @@
             </div>
         
             <div class="cursares">
+<div class="seleccion">
+            <select ngModel required #clase>
+          @for (curso of curchos; track curso.id) {
+            <option value="{{ curso.id_cs }}/{{ curso.curso_cs }}/{{ curso.maestro_cs }}" >
               
+            {{ curso.maestro_cs }} - {{ curso.curso_cs }}</option>
+          }
+        </select>
+<button (click)="ADDcurse(clase.value)"> agregar curso</button>
+</div>
             <section>
-        @for (curso of cursos; track curso.id) {
+        @for (curso2 of cursos; track curso2.id) {
           <article>
-            {{curso.id}}
-            {{curso.curso}}
-            {{ curso.maestro }}
+            {{curso2.id}}
+            {{curso2.curso}}
+            {{ curso2.maestro }}
           </article>}
 </section>
         
@@ -44,17 +54,20 @@
           `,
           styleUrls: ['./perfil.component.css']
         })
-        export class PerfilComponent implements OnInit {
+        export class PerfilComponent implements AfterViewInit {
           usuario: Usuariosinterfaz | undefined;
           cursos: any[] = [];
-        
+          curchos: any[] = [];
           constructor(
             private listaUSER: UsuariosService,
             private cacheService: CacheService,
-            private buscarCLService: BuscarCLService
+            private buscarCLService: BuscarCLService,
+            private buscarCrsService: BuscarCrsService
           ) {}
         
-          ngOnInit(): void {
+          ngAfterViewInit(): void {
+
+        
             const cacheItem = this.cacheService.getItem();
             if (cacheItem && cacheItem.length > 0) {
               const userId = cacheItem[0];
@@ -64,6 +77,14 @@
                   this.usuario = data.find(user => user.id_us === userId);
                   if (this.usuario) {
                     this.obtenerInformacion(cacheItem[0]);
+                    this.buscarCrsService.getcursos().subscribe(
+                      (data) => {
+                        this.curchos = data;
+                      },
+                      (error) => {
+                 
+                      }
+                    );
                   } else {
                   }
                 },
@@ -90,5 +111,41 @@
               }
             );
           }
+
+
+          ADDcurse(clase: string) {
+            const partesClase = clase.split('/');
+            const idCurso = partesClase[0];
+
+            const nombreCurso = partesClase[1];
+            const nombreMaestro = partesClase[2];
+
+            const cursoExistente = this.cursos.find(curso => curso.id === idCurso);
+          
+            if (cursoExistente) {
+              alert(`El curso de ${nombreCurso} con ${nombreMaestro} ya existe.`);
+            } else {
+        
+
+              this.cursos.push({
+                id: idCurso,
+                curso: nombreCurso,
+                maestro: nombreMaestro
+              });
+           
+
+console.log("agregador");
+
+
+
+            }
+          }
+          
+          
+          
+          
+
+
+          
         }
         
