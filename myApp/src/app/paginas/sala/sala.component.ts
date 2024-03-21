@@ -24,7 +24,7 @@ export class SalaComponent implements AfterViewInit  {
 
   ngAfterViewInit (): void {
     this.verificarCache();
-    this.logCursos();
+    this.logBlog();
     this.valorcache= this.cacheService.getItem();
   }
 

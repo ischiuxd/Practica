@@ -72,6 +72,17 @@ app.get("/api/cursos", (req, res) => {
         res.json(results);
     });
 });
+app.get("/api/blog", (req, res) => {
+    const sqlQuery = "SELECT * FROM practica4.blog_tb";
+    conxx.query(sqlQuery, (error, results) => {
+        if (error) {
+            console.error("Error al ejecutar la consulta:", error);
+            res.status(500).json({ error: "Error al obtener los datos de la tabla blog_tb" });
+            return;
+        }
+        res.json(results);
+    });
+});
 
 app.post("/api/agregarU", (req, res) => {
     const { id_us, registro_us, nombre_us, apellido_us, contra_us, admin_us, correo_us } = req.body;
@@ -98,6 +109,21 @@ app.post("/api/agregarU", (req, res) => {
             console.log(req.body);
             res.json({ message: "Datos agregados correctamente en ambas tablas" });
         });
+    });
+});
+app.post("/api/agregarBlog", (req, res) => {
+    const { id_bg, usuario_bg,curso_bg, mensa_bg, fecha_bg } = req.body;
+
+    const sqlInsertBlog = "INSERT INTO practica4.blog_tb (id_bg, usuario_bg,curso_bg, mensa_bg, fecha_bg) VALUES (?, ?, ?, ?, ?)";
+    const valuesBlog = [id_bg, usuario_bg,curso_bg, mensa_bg, fecha_bg];
+    conxx.query(sqlInsertBlog, valuesBlog, (error, results) => {
+        if (error) {
+            console.error("Error al insertar datos en la tabla blog_tb:", error);
+            res.status(500).json({ error: "Error al insertar datos en la tabla blog_tb" });
+            return;
+        }
+        console.log("Nuevo registro agregado a la tabla blog_tb:", results);
+        res.json({ message: "Registro agregado correctamente en la tabla blog_tb" });
     });
 });
 

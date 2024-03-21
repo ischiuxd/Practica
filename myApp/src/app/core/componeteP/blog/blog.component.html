@@ -1,1 +1,17 @@
-<p>blog works!</p>
+<div class="container">
+  <div class="usuarios" #componenteDinamico>
+    <h2>Agregar post</h2>
+    <ul>
+      <aside>
+        <select ngModel required #clase>
+          @for (curso of cursos; track curso.id) {
+            <option value="{{ curso.maestro_cs + '/' + curso.curso_cs }}" >{{ curso.maestro_cs }} - {{ curso.curso_cs }}</option>
+          }
+        </select>
+        <textarea type="textArea" placeholder="Ingrese la clase" ngModel required #comentario></textarea>
+        <button (click)="mandarPost(clase.value,comentario.value)">Postear</button>
+      </aside>
+    </ul>
+  </div>
+</div>
+

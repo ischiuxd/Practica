@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BuscarCrsService {
+export class BuscarBLGService {
+  URL:string="http://localhost:5000/api/blog";
 
-  URL:string="http://localhost:5000/api/cursos";
   constructor(private http:HttpClient) {}
-  getcursos(): Observable<any>{
+
+  getposteso(): Observable<any>{
     return this.http.get(this.URL).pipe(res=>res);
   }
 }

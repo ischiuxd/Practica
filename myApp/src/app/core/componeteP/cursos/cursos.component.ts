@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { BuscarCrsService } from '../../servicioCRS/buscar-crs.service';
-import { CiclocursoComponent } from '../../componeteP/ciclocurso/ciclocurso.component'; // Importar el componente CiclocursoComponent
+import { CiclocursoComponent } from '../../componeteP/ciclocurso/ciclocurso.component';
 
 @Component({
   selector: 'app-cursos',

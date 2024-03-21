@@ -1,0 +1,16 @@
+<ul>
+
+@for (curso of cursos; track curso.id) {
+    <li>
+      
+      <strong>{{ curso.fecha_bg }}</strong>
+      <div>
+        <section> De :<span>{{ curso.usuario_bg }}</span> || Para: <span>{{ curso.curso_bg }} </span> </section>
+<article>{{ curso.mensa_bg }}</article>
+      </div>
+ 
+    </li>
+  }
+
+
+</ul>
