@@ -41,10 +41,10 @@ export class RegistroComponent {
       } else {
 
   this.agregarService.agregarUsuario(nuevoUsuario).subscribe(() => {
-    console.log("Usuario agregado exitosamente");
+   
     this.router.navigate(['/']);
   }, error => {
-    console.error("Error al agregar usuario:", error);
+   
   });
 }
 

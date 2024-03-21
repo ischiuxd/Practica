@@ -1,77 +1,91 @@
-<div>
-            
-    <h1>
-        Horario Clase - 2024
-        <small>
-            , Primer Semestre
-        </small>
-    </h1>
+   
 
-</div>
-
-<div >
-    <form action="/resources" method="get">
-    <select  id="period" name="period">
-
-        <option value="21">First Semester-2024</option>
-        <option value="20">Second Semester-2023</option>
-        <option value="19">First Semester-2023</option>
-        <option value="18">Second Semester-2022</option>
-        <option value="17">First Semester-2022</option>
-        <option value="16">Second Semester-2021</option>
-        <option value="15">First Semester-2021</option>
-        <option value="14">Second Semester-2020</option>
-        <option value="13">First Semester-2020</option>
-        <option value="12">Second Semester-2019</option>
-        <option value="11">First Semester-2019</option>
-        <option value="10">Second Semester-2018</option>
-        <option value="9">First Semester-2018</option>
-        <option value="8">Second Semester-2017</option>
-        <option value="6">First Semester-2017</option>
-        <option value="5">Second Semester-2016</option>
-        <option value="4">First Semester-2016</option>
-        <option value="3">Second Semester-2015</option>
-        <option value="2">First Semester-2015</option>
-        <option value="1">Second Semester-2014</option>
+    <div class="sidebar">
+      <ul>
+        <li><button (click)="logCursos()">Cursos</button></li>
+        <li><button (click)="logBlog()">Blog</button></li>
+        <li><button (click)="logPerfil()">Perfil</button></li>
+        <li><button (click)="salir()">salir</button></li>
+        <li><span > cache: {{valorcache}}</span></li>
+      </ul>
+    </div>
     
-    </select>
-    <input  type="submit" value="Ir">
+      
+    <div class="content">
+      <div #componenteDinamico>
 
-    </form>
-</div>
+      </div>
+    </div>
+    
 
+      <style>
 
-<style>
-div {
-    margin: 20px;
+body{
+  background: #f0f2eb;
 }
 
 h1 {
-    font-size: 24px;
-    color: #333;
-}
-
-h1 small {
-    font-size: 14px;
-    color: #666;
-}
-
-form {
-    margin-top: 20px;
-}
-
-select, input[type="submit"] {
-    padding: 8px 15px;
-    font-size: 16px;
-}
-
-input[type="submit"] {
-    background-color: #b30000;
-    margin: 5px;
-    border-radius: 15%;
-    cursor: pointer;
-    border: 1px solid red; 
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 
-</style>
+.sidebar {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 220px;
+  height: 93vh;
+  background-color: #f0f2eb;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #333;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background-color: #ccc;
+}
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:78vw;
+  height:100%;
+  margin-left:260px;
+  padding-left: 5px ;
+  background:white;
+  border-left: 5px solid #ccc;
+}
+
+
+
+
+
+
+
+
+      </style>

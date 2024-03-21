@@ -1,0 +1,26 @@
+li {
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.4;
+  }
+  
+  
+ li::before {
+    content: "▹";
+    margin-right: 8px;
+    color: #333;
+  }
+  
+  
+ li span {
+    font-weight: bold;
+    color: #007bff; 
+  }
+  
+  
+ li strong {
+    font-weight: bold;
+    color: #000;
+    margin-right:15px ;
+  }

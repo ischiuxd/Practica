@@ -1,0 +1,20 @@
+<div class="usuarios">
+    <h2>Información de Cursos</h2>
+    <ul>
+      <aside>
+        <input type="text" placeholder="Ingrese el maestro" ngModel required #maestro>
+        <button (click)="filtrarPorMaestro(maestro.value)">filtrar</button>
+        <input type="text" placeholder="Ingrese la clase" ngModel required #clase>
+        <button  (click)="filtrarPorcurso(clase.value)" >filtrar</button>
+        <button  (click)="obtenerCursos()" >quitar filtro</button>
+      </aside>
+      
+
+      <div #componenteDinamico>
+
+      </div>
+
+
+    </ul>
+  </div>
+  
